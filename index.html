@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不再流浪~</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            cursor: url('./208749.png') 10 10, auto;
+        }
+
+        button:hover, a:hover, .cursor-pointer:hover {
+            cursor: url('./208740.png') 10 10, pointer;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-accent': '#FF6B6B',
+                        'dark-bg': '#1a202c',
+                        'dark-text': '#e2e8f0',
+                    }
+                }
+            }
+        }
+
+        function goHome() {
+            window.location.href = '/';
+        }
+
+        function setBackground() {
+            const now = new Date();
+            const minute = now.getMinutes();
+            const isOdd = minute % 2 !== 0;
+
+            const err1Url = "./err1.png";
+            const err2Url = "./err2.png";
+
+            const bodyElement = document.body;
+
+            bodyElement.classList.remove('bg-dark-bg');
+
+            if (isOdd) {
+                bodyElement.style.backgroundImage = `url('${err1Url}')`;
+            } else {
+                bodyElement.style.backgroundImage = `url('${err2Url}')`;
+            }
+
+            bodyElement.style.backgroundSize = 'cover';
+            bodyElement.style.backgroundRepeat = 'no-repeat';
+            bodyElement.style.backgroundPosition = 'center center';
+            bodyElement.style.backgroundAttachment = 'fixed';
+        }
+
+        document.addEventListener('DOMContentLoaded', setBackground);
+    </script>
+</head>
+<body class="text-white min-h-screen flex items-center justify-center p-4">
+    <div class="text-center max-w-lg w-full p-8">
+        <h1 class="text-9xl font-extrabold text-primary-accent mb-4 transition duration-500 hover:scale-105">
+            404
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-400 mb-8">
+            抱歉，我们找不到您要访问的页面。可能是链接错误或页面已被移除。
+        </p>
+        <button onclick="goHome()"
+                class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl shadow-lg
+                       text-white bg-primary-accent hover:bg-red-500 transition duration-300 ease-in-out transform hover:scale-105
+                       focus:outline-none focus:ring-4 focus:ring-primary-accent focus:ring-opacity-50">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            返回首页
+        </button>
+    </div>
+</body>
+</html>
